@@ -10,8 +10,6 @@ class SignIn extends BaseController{
         $title ='Đăng nhập';
         $this->data['page_title'] = $title;
         $this->data['content'] = 'signin/index';
-        $this->render('layouts/account_layout',$this->data);
-        echo $this->model->createId();
-        $this->model->addUser("ho","ten","asd","asdaw","dasdaw","awdaw","dawda","Awd");
+        $this->render('layouts/account_layout',$this->data)
     }
 }

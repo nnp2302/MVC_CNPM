@@ -88,8 +88,6 @@ class App
         //Xử lí params
         $this->__params = array_values($urlArray);
         //Kiểm tra phương thức
-        print_r($this->__params);
-        print_r($this->__action);
         if (method_exists($this->__controller, $this->__action)) {
             call_user_func_array([$this->__controller, $this->__action], $this->__params);
         } else {

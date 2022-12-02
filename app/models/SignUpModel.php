@@ -15,11 +15,13 @@ class SignUpModel extends Model
     {
         if(!$this->isUserExist($username)){           
             $id = $this->createId($this->countKH());
-            echo $id;
             $this->addUser($id);
             $data = new TaiKhoan($id,$username,$password);
             $this->db->insert($this->account_table,$data);
             $this->updateKH();
+        }else{
+            $data['message'] = 'Tài khoản đã tồn tại';
+            App::$app->loadError('0',$data);
         }
     }
     //Đếm số lượng khách hàng
@@ -49,7 +51,6 @@ class SignUpModel extends Model
     function isUserExist($username)
     {
         $data = $this->db->query("select * from $this->account_table where username = '$username'")->fetch(PDO::FETCH_ASSOC);
-        print_r($data);
         return !empty($data);
     }
     public function updateKH(){

@@ -14,7 +14,4 @@ class SignInModel extends Model{
         $data = $this->db->query($sql)->fetchAll();
         return !empty($data);
     }
-
-
-    
 }

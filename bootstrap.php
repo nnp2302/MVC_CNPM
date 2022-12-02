@@ -47,4 +47,5 @@ require_once './app/App.php';
         }   
     }
 require_once './app/core/Model.php';
+require_once './app/core/Request.php';
 require_once './app/core/BaseController.php';

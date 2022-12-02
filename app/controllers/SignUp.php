@@ -12,7 +12,10 @@ class SignUp extends BaseController{
         $this->data['content'] = 'signup/index';
         $this->render('layouts/account_layout',$this->data);
     }
-    public function create($uname,$pass){
-        $this->model->create($uname,$pass);   
+    public function create(){
+        $request = new Request();
+        $data = $request->getField();
+        extract($data);
+        $this->model->create($username,$password);
     }
 }
