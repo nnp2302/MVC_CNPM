@@ -14,7 +14,7 @@
                         <a href="<?php echo _WEB_ROOT;?>/dang-nhap" class="nav-link">Đăng nhập</a>
                     </li>
                     <li class="nav-item me-2">
-                        <a href="<?php echo _WEB_ROOT;?>/signup" class="nav-link">Đăng ký</a>
+                        <a href="<?php echo _WEB_ROOT;?>/dang-ki" class="nav-link">Đăng ký</a>
                     </li>
                 </ul>
             </div>

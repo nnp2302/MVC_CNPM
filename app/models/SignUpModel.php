@@ -12,17 +12,16 @@ class SignUpModel extends Model
     }
     //Thêm tài khoản
     public function create($username, $password)
-    {
-        if(!$this->isUserExist($username)){           
+    { 
+        if(!$this->isUserExist($username)){      
             $id = $this->createId($this->countKH());
             $this->addUser($id);
             $data = new TaiKhoan($id,$username,$password);
             $this->db->insert($this->account_table,$data);
             $this->updateKH();
-        }else{
-            $data['message'] = 'Tài khoản đã tồn tại';
-            App::$app->loadError('0',$data);
+            return true;
         }
+        return 'Tài khoản đã tồn tại';
     }
     //Đếm số lượng khách hàng
     function countKH()

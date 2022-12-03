@@ -32,11 +32,12 @@
     <!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers -->
 
 </head>
+
 <body>
-<?php
+    <?php
     $this->render($content);
-?>
-<!--#region Scripts-->
+    ?>
+    <!--#region Scripts-->
 
     <!-- Core -->
     <script src="<?php echo _WEB_ROOT; ?>/app/public/vendor/@popperjs/core/dist/umd/popper.min.js"></script>
@@ -79,7 +80,18 @@
     <!-- Volt JS -->
     <script src="<?php echo _WEB_ROOT; ?>/app/public/assets/js/volt.js"></script>
 
-<!--#endregion-->
+    <!--#endregion-->
+
+
+    <div class="notyf" style="justify-content: flex-start; align-items: flex-end;">
+        <?php
+            if(!empty($message)){
+                $data['message']=$message;
+                $this->render('pop-up-errors/danger',$data);
+            }
+        ?>
+    </div>
+    <div class="notyf-announcer" aria-atomic="true" aria-live="polite" style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; outline: 0px;">This action is not allowed.</div>
 </body>
 
 </html>

@@ -57,6 +57,7 @@ class Database{
             if($status){
                 return true;
             }
+            return false;
         }
     }
 //Thực thi câu truy vấn

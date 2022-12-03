@@ -26,6 +26,12 @@
     <!-- Notyf -->
     <link type="text/css" href="<?php echo _WEB_ROOT; ?>/app/public/vendor/notyf/notyf.min.css" rel="stylesheet">
 
+    <link type="text/css" href="<?php echo _WEB_ROOT; ?>/app/public/vendor/fullcalendar/main.min.css" rel="stylesheet">
+    <link type="text/css" href="<?php echo _WEB_ROOT; ?>/app/public/vendor/apexcharts/dist/apexcharts.css" rel="stylesheet">
+    <link type="text/css" href="<?php echo _WEB_ROOT; ?>/app/public/vendor/dropzone/dist/min/dropzone.min.css" rel="stylesheet">
+    <link type="text/css" href="<?php echo _WEB_ROOT; ?>/app/public/assets/styles/choices.min.css" rel="stylesheet">
+    <link type="text/css" href="<?php echo _WEB_ROOT; ?>/app/public/vendor/leaflet/dist/leaflet.css" rel="stylesheet">
+
     <!-- Volt CSS -->
     <link type="text/css" href="<?php echo _WEB_ROOT; ?>/app/public/assets/css/volt.css" rel="stylesheet">
 
@@ -34,25 +40,20 @@
 </head>
 <body>
 <?php
-    $this->render('blocks/user_header');
-    $this->render($content);
-    $this->render('blocks/user_footer');
+    if(!empty($_SESSION['user'])){
+       extract($_SESSION['user']);
+       $data['chucnang'] = $chucnang;
+       $data['page'] = $page;
+        $this->render('blocks/client_header',$data);
+        $this->render($content,$data);
+        $this->render('blocks/client_footer'); 
+    }else{       
+        $this->render('blocks/client_header');
+        $data['message']='Bạn chưa đăng nhập';
+        App::$app->loadError('0',$data);
+    }
+    
 ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!--#region Scripts-->
 
     <!-- Core -->
@@ -71,7 +72,8 @@
     <!-- Charts -->
     <script src="<?php echo _WEB_ROOT; ?>/app/public/vendor/chartist/dist/chartist.min.js"></script>
     <script src="<?php echo _WEB_ROOT; ?>/app/public/vendor/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
-
+    <!-- Datatable-->
+    <script src="<?php echo _WEB_ROOT; ?>/app/public/vendor/simple-datatables/dist/umd/simple-datatables.js"></script>
     <!-- Datepicker -->
     <script src="<?php echo _WEB_ROOT; ?>/app/public/vendor/vanillajs-datepicker/dist/js/datepicker.min.js"></script>
 
