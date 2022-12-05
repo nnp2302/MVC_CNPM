@@ -42,21 +42,24 @@
             <span class="sidebar-icon">
               <img src="<?php echo _WEB_ROOT ?>/app/public/assets/img/brand/light.svg" height="20" width="20" alt="Volt Logo">
             </span>
-            <span class="mt-1 ms-1 sidebar-text"><?php echo (!empty($chucnang))?$chucnang[0]['tenchucvu']:'Vui lòng đăng nhập' ?></span>
+            <span class="mt-1 ms-1 sidebar-text"><?php echo (!empty($_SESSION['chucnang']))?$_SESSION['chucnang'][0]['tenchucvu']:'Vui lòng đăng nhập' ?></span>
           </a>
         </li>
-        <?php foreach ($chucnang as $key => $value) {
-                 echo '<li class="nav-item '.(($page==$value['controller'])?'active':'').'">';
-                 echo '<a href="'._WEB_ROOT.$value['location'].'" class="nav-link ">';
-                 echo '<span class="sidebar-icon">';
-                 echo  '<svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">';
-                 echo    '<path fill-rule="evenodd" d="'.$value['icon_vector'].'" clip-rule="evenodd"></path>';
-                 echo  ' </svg>';
-                 echo '</span>';
-                 echo '<span class="sidebar-text">'.$value['tenchucnang'].'</span>';
-                 echo '</a>';
-                 echo'</li>';
-                 echo'</li>';
+        <?php 
+        if(isset($_SESSION['chucnang'])){
+          foreach ($_SESSION['chucnang'] as $key => $value) {
+            echo '<li class="nav-item '.(($page==$value['controller'])?'active':'').'">';
+            echo '<a href="'._WEB_ROOT.$value['location'].'" class="nav-link ">';
+            echo '<span class="sidebar-icon">';
+            echo  '<svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">';
+            echo    '<path fill-rule="evenodd" d="'.$value['icon_vector'].'" clip-rule="evenodd"></path>';
+            echo  ' </svg>';
+            echo '</span>';
+            echo '<span class="sidebar-text">'.$value['tenchucnang'].'</span>';
+            echo '</a>';
+            echo'</li>';
+            echo'</li>';
+   }
         }
         ?>
         <li class="nav-item">
@@ -84,7 +87,7 @@
                 <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path>
               </svg>
             </span>
-            <input type="text" class="form-control" id="topbarInputIconLeft" placeholder="Search" aria-label="Search" aria-describedby="topbar-addon" name="<?php echo $page; ?>">
+            <input type="text" class="form-control" id="topbarInputIconLeft" placeholder="Search" aria-label="Search" aria-describedby="topbar-addon" name="search">
           </div>
         </form>
         <!-- / Search form -->

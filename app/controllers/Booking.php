@@ -21,8 +21,8 @@ class Booking extends BaseController{
         $idkh = $_SESSION['user']['id'];
         $request = new Request();
         $data = $request->getField();
-        if(isset($data['booking'])){ 
-            $result['search'] = $this->model->timkiem($idkh,$data['booking']);
+        if(isset($data['search'])){ 
+            $result['search'] = $this->model->timkiem($idkh,$data['search']);
         }
         $title ='Tra cứu lịch đặt';
         $result['page_title'] = $title;

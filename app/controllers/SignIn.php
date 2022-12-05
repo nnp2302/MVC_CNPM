@@ -23,8 +23,14 @@ class SignIn extends BaseController{
         $isCompleted = $this->model->login($username,$password);
 
         if(is_array($isCompleted)){
-            $_SESSION['user']=$isCompleted;
-            header('location:'._WEB_ROOT.'/thong-tin-ca-nhan');
+            $_SESSION['user']=$isCompleted['user'];
+
+            $_SESSION['chucnang'] = $isCompleted['chucnang'];
+            if(substr($isCompleted['user']['id'],0,2)=='KH'){
+                header('location:'._WEB_ROOT.'/thong-tin-ca-nhan');
+            }else{
+                header('location:'._WEB_ROOT.'/thong-tin-nhan-vien');
+            }
         }else{
             $this->index($isCompleted);
         }

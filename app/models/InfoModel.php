@@ -15,6 +15,12 @@
                     $_SESSION['user']=$data;
                     header('location:'._WEB_ROOT.'/thong-tin-ca-nhan');
                 }
+            }else{
+                if($this->db->update($this->table_nhanvien,$data,"id='$id'")){
+                    $data['id'] = $id;
+                    $_SESSION['user']=$data;
+                    header('location:'._WEB_ROOT.'/thong-tin-nhan-vien');
+                }
             }
         }
     }

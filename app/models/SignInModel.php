@@ -1,7 +1,8 @@
 <?php
 #Kế thừa từ class Model
 class SignInModel extends Model{
-    protected $userTable = 'khachhang';
+    protected $khTable = 'khachhang';
+    protected $nvTable = 'nhanvien';
     protected $accountTable = 'taikhoan';
     protected $countUser = 'countuser';
     public function __construct()
@@ -13,10 +14,14 @@ class SignInModel extends Model{
             $data = $this->checkPassword($username,$password);
             if(!empty($data)){
                 extract($data);
-                $sql = "select * from $this->userTable where id ='$iduser'"; 
-                $data = $this->db->query($sql)->fetch();
+                if(substr($iduser,0,2)=='KH'){
+                    $sql = "select * from $this->khTable where id ='$iduser'"; 
+                }else{
+                    $sql = "select * from $this->nvTable where id ='$iduser'"; 
+                }
+                $data['user'] = $this->db->query($sql)->fetch(PDO::FETCH_ASSOC);
                 $sql = "select tenchucvu,controller,location,tenchucnang,icon_vector from chucvu join chucnang on locate(chucvu.id,chucnang.owner_role)!=0 where chucvu.id ='".substr($iduser,0,2)."'";
-                $chucnang = $this->db->query($sql)->fetchAll();
+                $chucnang = $this->db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
                 $data['chucnang'] = $chucnang;
                 return $data;
             }else{
@@ -27,13 +32,13 @@ class SignInModel extends Model{
         }
     }
     public function checkExistUser($username){
-        $sql = "select * from $this->accountTable where username ='$username'"; 
-        $data = $this->db->query($sql)->fetchAll();
+        $sql = "select iduser from $this->accountTable where username ='$username'"; 
+        $data = $this->db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
         return !empty($data);
     }
     public function checkPassword($username,$password){
-        $sql = "select * from $this->accountTable where username ='$username' and matkhau='$password'"; 
-        $data = $this->db->query($sql)->fetch();
+        $sql = "select iduser from $this->accountTable where username ='$username' and matkhau='$password'"; 
+        $data = $this->db->query($sql)->fetch(PDO::FETCH_ASSOC);
         return $data;
     }
 }

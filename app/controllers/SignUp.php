@@ -18,6 +18,8 @@ class SignUp extends BaseController{
     public function create(){
         $request = new Request();
         $data = $request->getField();
+
+        
         extract($data);
         $isSuccess = $this->model->create($username,$password);
         if(!is_bool($isSuccess)){

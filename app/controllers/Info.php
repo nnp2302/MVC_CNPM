@@ -7,11 +7,19 @@ class Info extends BaseController{
         $this->model = $this->model('InfoModel');
     }
 
-    public function index(){
+    public function khachhang(){
         $title = 'Thông tin cá nhân';
         $this->data['page_title'] = $title;
-        $this->data['content'] = 'info/index';
+        $this->data['content'] = 'info/khachhang';
         $this->data['page']='info';        
+        //Render layout
+        $this->render('layouts/client_layout',$this->data);
+    }
+    public function nhanvien(){
+        $title = 'Thông tin nhân viên';
+        $this->data['page_title'] = $title;
+        $this->data['content'] = 'info/nhanvien';
+        $this->data['page']='info';
         //Render layout
         $this->render('layouts/client_layout',$this->data);
     }
