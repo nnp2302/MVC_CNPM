@@ -13,17 +13,13 @@ class CustomerManageModel extends Model
         $data = $this->db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
         return $data;
     }
-    public function addCustomer($data)
-    {   
-        $data['id'] = $this->createcustomerID($this->countKH(),$data['chucvu']);
-        $this->db->insert('khachhang',$data);
-    }
     public function editCustomer($data)
     {
         $this->db->update('khachhang',$data,"id='".$data['id']."'");
     }
     public function deleteCustomer($id)
     {
+        $this->db->delete('taikhoan',"iduser='$id'");
         $this->db->delete('khachhang',"id='$id'");
     }
     public function searchCustomer($id){
@@ -38,7 +34,7 @@ class CustomerManageModel extends Model
             $id = '0' . $id;
         }
         return $chucvu. $id;
-    }
+    } 
     //Đếm số lượng nhân viên
     function countKH()
     {

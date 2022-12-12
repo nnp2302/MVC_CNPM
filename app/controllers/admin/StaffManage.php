@@ -19,16 +19,19 @@ class StaffManage extends BaseController{
     public function add(){
         $data = $this->getRequest();
         $this->model->addStaff($data);
+        header('location:'._WEB_ROOT.'/quan-li-nhan-vien');
     }
 
     public function edit(){
         $data = $this->getRequest();
         $this->model->editStaff($data);
+        header('location:'._WEB_ROOT.'/quan-li-nhan-vien');
     }
 
     public function delete(){
         $data = $this->getRequest();
         $this->model->deleteStaff($data['id']);
+        header('location:'._WEB_ROOT.'/quan-li-nhan-vien');
     }
 
     public function search(){

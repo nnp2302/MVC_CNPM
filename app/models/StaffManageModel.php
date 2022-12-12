@@ -17,6 +17,11 @@ class StaffManageModel extends Model
     {   
         $data['id'] = $this->createStaffID($this->countNV(),$data['chucvu']);
         $this->db->insert('nhanvien',$data);
+        $taikhoan['iduser']=$data['id'];
+        $taikhoan['username']=$data['id'];
+        $taikhoan['matkhau']=1;
+        $this->db->insert('taikhoan',$taikhoan);
+        $this->db->query("update countuser set NV=NV+1");
     }
     public function editStaff($data)
     {
@@ -24,6 +29,7 @@ class StaffManageModel extends Model
     }
     public function deleteStaff($id)
     {
+        $this->db->delete('taikhoan',"iduser='$id'");
         $this->db->delete('nhanvien',"id='$id'");
     }
     public function searchStaff($id){

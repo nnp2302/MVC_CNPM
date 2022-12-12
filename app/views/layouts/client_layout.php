@@ -43,7 +43,7 @@
     if(!empty($_SESSION['user'])){
        extract($_SESSION['user']);
         $this->render('blocks/client_header',$data);
-        $this->render($content,$data);
+        $this->render($content,$data); 
         $this->render('blocks/client_footer'); 
     }else{       
         $this->render('blocks/client_header');

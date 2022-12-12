@@ -16,20 +16,23 @@
             $this->data['customerlist'] = $this->model->getCustomerList();
             //Render layout
             $this->render('layouts/client_layout',$this->data);
-        }
+        } 
         public function add(){
             $data = $this->getRequest();
             $this->model->addCustomer($data);
-        }
+            header('location:'._WEB_ROOT.'/quan-li-khach-hang');
+        } 
     
         public function edit(){
             $data = $this->getRequest();
             $this->model->editCustomer($data);
+            header('location:'._WEB_ROOT.'/quan-li-khach-hang');
         }
     
         public function delete(){
             $data = $this->getRequest();
             $this->model->deleteCustomer($data['id']);
+            header('location:'._WEB_ROOT.'/quan-li-khach-hang');
         }
     
         public function search(){

@@ -37,3 +37,13 @@
     $routes['quan-li-dich-vu'] = 'admin/servicemanage';
     //bang dieu khien
     $routes['bang-dieu-khien'] ='admin/dashboard/index';
+//nhan vien bao duong
+    //lap phieu bao duong
+    $routes['lap-phieu-bao-duong'] = 'baoduong/baoduong/index';
+    $routes['lap-phieu-bao-duong/(.+)'] = 'baoduong/baoduong/$1';
+    $routes['tao-phieu-bao-duong'] = 'baoduong/baoduong/add';
+//tho may
+    $routes['tiep-nhan-xe'] = 'thomay/TiepNhanXe/list';
+    $routes['lap-phieu-tiep-nhan-xe/(.+)'] = 'thomay/TiepNhanXe/detail/$1';
+    $routes['tao-phieu-tiep-nhan-xe'] = 'thomay/TiepNhanXe/add';
+    $routes['danh-gia-tinh-trang-xe'] = 'thomay/TiepNhanXe/danhgia';

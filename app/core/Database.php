@@ -25,6 +25,37 @@ class Database{
             }
         }
     }
+//Them nhieu cot
+    function insertMulti($table,$data){
+        if(!empty($data)){
+            //Xử lí fields
+            $fieldStr='';
+            foreach ($data[0] as $key => $value) {
+                $fieldStr.=$key.',';
+            }
+            $fieldStr = rtrim($fieldStr,',');
+            //Xử lí values
+            $valueStr='';
+            foreach ($data as $key => $value) {
+                $valueStr.='(';
+                foreach ($value as $subkey => $subvalue) {
+                    if(is_string($subvalue))
+                        {$valueStr.="'".$subvalue."',";}
+                    else
+                        {$valueStr.=$subvalue.",";}
+                }
+                $valueStr = rtrim($valueStr,',');
+                $valueStr.='),';
+            }
+            $valueStr = rtrim($valueStr,',');
+            
+            $sql = "insert into $table($fieldStr) values $valueStr";
+            $status = $this->query($sql);
+            if($status){
+                return true;
+            }
+        }
+    }
 //Xóa
     function delete($table,$condition=''){
         
