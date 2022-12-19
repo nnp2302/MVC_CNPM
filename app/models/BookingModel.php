@@ -1,7 +1,7 @@
 <?php
 #Kế thừa từ class Model
 class BookingModel extends Model{
-    protected $table = 'lichdat';
+    protected $lich_dat = 'lich_dat';
 
     public function __construct()
     {
@@ -9,35 +9,37 @@ class BookingModel extends Model{
     } 
 
     public function datlich($data){
-        $data['idkh'] = $_SESSION['user']['id'];
-        $data['bienso'] = strtoupper($data['bienso']);
-        $data['trangthailichdat'] = false;
-        $data['thoigiandat']= date("Y-m-d H:i:s");
+        $data['MaKhachHang'] = $_SESSION['user']['id'];
+        $data['BienSo'] = strtoupper($data['BienSo']);
+        $data['tinhtranglichdat'] = false;
+        $data['thoigiantaolich']= date("Y-m-d H:i:s");
         extract($data);
-        $result = $this->kiemtraxe($bienso,$idkh);
+        $result = $this->kiemtraxe($BienSo,$MaKhachHang);
         if(is_bool($result)){
-            return $this->db->insert($this->table,$data);
+            $this->db->insert($this->lich_dat,$data);
+            return 'Đặt lịch thành công';
         }else{
-            return $this->db->update($this->table,$data,"id=$result");
+            $this->db->update($this->lich_dat,$data,"MaLichDat=$result");
+            return 'Đã cập nhật lịch đặt cho biển số '.$data['BienSo'];
         }
     }
 
     private function kiemtraxe($bienso,$idkh){
-        $sql = "select id from lichdat where bienso='$bienso' and trangthailichdat=false and idkh='$idkh'";
+        $sql = "select MaLichDat from $this->lich_dat where bienso='$bienso' and tinhtranglichdat=false and MaKhachHang='$idkh'";
         $data = $this->db->query($sql)->fetch();
         if(empty($data)){
             return false;
         }else{
-            return $data['id'];
+            return $data['MaLichDat'];
         }
     }
 
     public function timkiem($idkh,$condition=''){
         if(!empty($condition)){
-            $sql = "select ten,sdt,ngay,thoigiandat,bienso, CONCAT_WS(' ', hangxe,loaixe ) as `tenxe` from lichdat where idkh = '$idkh' and bienso like '$condition'";
+            $sql = "select ten,sdt,ngay,thoigiandat,bienso, CONCAT_WS(' ', hangxe,loaixe ) as `tenxe` from $this->lich_dat where idkh = '$idkh' and bienso like '$condition'";
         }
         else{
-            $sql = "select ten,sdt,ngay,thoigiandat,bienso,(`hangxe`+' '+`loaixe`) as `tenxe` from lichdat where idkh = '$idkh'";
+            $sql = "select ten,sdt,ngay,thoigiandat,bienso,CONCAT_WS(' ', hangxe,loaixe ) as `tenxe` from $this->lich_dat where idkh = '$idkh'";
         }
         $result = $this->db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
         return $result;

@@ -1,9 +1,9 @@
 <?php
     class KhachHang{
-    public $id,$ho,$ten,$gioitinh,$ngaysinh,$sdt,$email,$diachi,$loaikh;
+    public $makhachhang,$ho,$ten,$gioitinh,$ngaysinh,$sdt,$email,$diachi,$loaikh;
         function __construct($id,$ho,$ten,$gioitinh,$ngaysinh,$sdt,$email,$diachi,$loaikh)
         {
-            $this->id=$id;
+            $this->makhachhang=$id;
             $this->ho=$ho;
             $this->ten=$ten;
             $this->gioitinh=$gioitinh;

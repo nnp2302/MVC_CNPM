@@ -5,10 +5,13 @@ class Booking extends BaseController{
     {
         $this->model = $this->model('BookingModel');
     }
-    public function index(){
+    public function index($message = ''){
         $title ='Đặt lịch';
         $this->data['page_title'] = $title;
         $this->data['page'] = 'booking';
+        if(!empty($message)){
+            $this->data['message'] = $message;
+        }
         $this->data['content'] = 'booking/index';
         $this->render('layouts/client_layout',$this->data);
     }
@@ -16,6 +19,7 @@ class Booking extends BaseController{
         $request = new Request();
         $data = $request->getField();
         $result = $this->model->datlich($data);
+        $this->index($result);
     }
     public function search(){
         $idkh = $_SESSION['user']['id'];

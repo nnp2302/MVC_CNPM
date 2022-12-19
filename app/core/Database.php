@@ -18,7 +18,7 @@ class Database{
             $valueStr = rtrim($valueStr,',');
             
             $sql = "insert into $table($fieldStr) values ($valueStr)";
-
+            echo $sql;
             $status = $this->query($sql);
             if($status){
                 return true;
@@ -50,6 +50,7 @@ class Database{
             $valueStr = rtrim($valueStr,',');
             
             $sql = "insert into $table($fieldStr) values $valueStr";
+            print_r($sql);
             $status = $this->query($sql);
             if($status){
                 return true;
@@ -104,6 +105,23 @@ class Database{
             die();
         }
         
+    }
+    function insertReturnLast($table,$data){
+        if(!empty($data)){
+            $fieldStr='';
+            $valueStr='';
+            foreach ($data as $key => $value) {
+                $fieldStr.=$key.',';
+                $valueStr.="'".$value."',";
+            }
+            $fieldStr = rtrim($fieldStr,',');
+            $valueStr = rtrim($valueStr,',');
+            
+            $sql = "insert into $table($fieldStr) values ($valueStr);";
+
+            $status = $this->query($sql);
+            return $this->lastInsertId();
+        }
     }
 //Trả về id mới nhất sau khi đã insert
     function lastInsertId(){

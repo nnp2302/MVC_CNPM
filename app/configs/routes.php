@@ -44,6 +44,14 @@
     $routes['tao-phieu-bao-duong'] = 'baoduong/baoduong/add';
 //tho may
     $routes['tiep-nhan-xe'] = 'thomay/TiepNhanXe/list';
+    $routes['tiep-nhan-xe/(.+)'] = 'thomay/TiepNhanXe/$1';
     $routes['lap-phieu-tiep-nhan-xe/(.+)'] = 'thomay/TiepNhanXe/detail/$1';
     $routes['tao-phieu-tiep-nhan-xe'] = 'thomay/TiepNhanXe/add';
-    $routes['danh-gia-tinh-trang-xe'] = 'thomay/TiepNhanXe/danhgia';
+    //Phieu yeu cau phu tung
+    $routes['yeu-cau-phu-tung'] = 'thomay/YeuCauPhuTung';
+    $routes['yeu-cau-phu-tung/(.+)'] = 'thomay/YeuCauPhuTung/yeucau/$1';
+    $routes['tao-phieu-yeu-cau-phu-tung'] = 'thomay/YeuCauPhuTung/add';
+//kho
+    $routes['xuat-kho']= 'kho/XuatKho';
+    $routes['xuat-kho/(.+)'] = 'kho/XuatKho/read/$1';
+    $routes['xac-nhan/(.+)']='kho/XuatKho/xacnhan/$1';

@@ -8,13 +8,13 @@
           <div class="col-md-6 mb-3">
             <div>
               <label for="first_name">Họ</label>
-              <?php echo '<input class="form-control" id="first_name" name="ho" type="text" placeholder="Chưa cập nhật" value="' . $ho . '" required>'; ?>
+              <?php echo '<input class="form-control" id="first_name" name="Ho" type="text" placeholder="Chưa cập nhật" value="' . $Ho . '" required>'; ?>
             </div>
           </div>
           <div class="col-md-6 mb-3">
             <div>
               <label for="last_name">Tên</label>
-              <?php echo '<input class="form-control" id="last-name" name="ten" type="text" placeholder="Chưa cập nhật" value="' . $ten . '" required>'; ?>
+              <?php echo '<input class="form-control" id="last-name" name="Ten" type="text" placeholder="Chưa cập nhật" value="' . $Ten . '" required>'; ?>
             </div>
           </div>
         </div>
@@ -27,17 +27,17 @@
                   <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path>
                 </svg>
               </span>
-              <?php echo '<input data-datepicker="" class="form-control" id="birthday" name="ngaysinh" type="text" placeholder="Chưa có thông tin ngày sinh" value="' . date("m/d/Y", strtotime($ngaysinh)) . '" required>' ?>
+              <?php echo '<input data-datepicker="" class="form-control" id="birthday" name="NgaySinh" type="text" placeholder="Chưa có thông tin ngày sinh" value="' . date("m/d/Y", strtotime($NgaySinh)) . '" required>' ?>
             </div>
           </div>
           <div class="col-md-6 mb-3">
             <label for="gender">Giới tính</label>
-            <select class="form-select mb-0" id="gender" aria-label="Gender select example" name="gioitinh">
+            <select class="form-select mb-0" id="gender" aria-label="Gender select example" name="GioiTinh">
               <?php
               echo '<option value="-1">Chưa cập nhật</option>';
-              echo '<option value="0" ', $gioitinh == "0" ? "selected" : "", '>Nữ</option>';
-              echo '<option value="1" ', $gioitinh == "1" ? "selected" : "", '>Nam</option>';
-              echo '<option value="9" ', $gioitinh == "9" ? "selected" : "", '>Khác</option>'; ?>
+              echo '<option value="0" ', $GioiTinh == "0" ? "selected" : "", '>Nữ</option>';
+              echo '<option value="1" ', $GioiTinh == "1" ? "selected" : "", '>Nam</option>';
+              echo '<option value="9" ', $GioiTinh == "9" ? "selected" : "", '>Khác</option>'; ?>
             </select>
           </div>
         </div>
@@ -45,13 +45,13 @@
           <div class="col-md-6 mb-3">
             <div class="form-group">
               <label for="email">Email</label>
-              <?php echo '<input class="form-control" id="email" name="email" type="email" placeholder="Chưa có email" value="' . $email . '">'; ?>
+              <?php echo '<input class="form-control" id="email" name="Email" type="email" placeholder="Chưa có email" value="' . $Email . '">'; ?>
             </div>
           </div>
           <div class="col-md-6 mb-3">
             <div class="form-group">
               <label for="phone">Số điện thoại</label>
-              <?php echo '<input class="form-control" id="phone" name="sdt" type="text" placeholder="Chưa cập nhật số điện thoại" value="' . $sdt . '" required>'; ?>
+              <?php echo '<input class="form-control" id="phone" name="SDT" type="text" placeholder="Chưa cập nhật số điện thoại" value="' . $SDT . '" required>'; ?>
             </div>
           </div>
         </div>
@@ -59,7 +59,7 @@
           <div class="col-sm-9 mb-3">
             <div class="form-group">
               <label for="address">Địa chỉ</label>
-              <input class="form-control" id="diachi" value="<?php echo $diachi; ?>" name="diachi" type="text" placeholder="Địa chỉ hiện tại của bạn">
+              <input class="form-control" id="diachi" value="<?php echo $DiaChi; ?>" name="DiaChi" type="text" placeholder="Địa chỉ hiện tại của bạn">
             </div>
           </div>
         </div>

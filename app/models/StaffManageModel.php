@@ -1,7 +1,9 @@
 <?php
 class StaffManageModel extends Model
 {
-    protected $count_user='countuser';
+    protected $tham_so='tham_so';
+    protected $nhan_vien = 'nhan_vien';
+    protected $tai_khoan = 'tai_khoan';
     public function __construct()
     {
         parent::__construct();
@@ -9,31 +11,31 @@ class StaffManageModel extends Model
 
     public function getStaffList()
     {
-        $sql = "select * from nhanvien";
+        $sql = "select * from $this->nhan_vien";
         $data = $this->db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
         return $data;
     }
     public function addStaff($data)
     {   
-        $data['id'] = $this->createStaffID($this->countNV(),$data['chucvu']);
-        $this->db->insert('nhanvien',$data);
-        $taikhoan['iduser']=$data['id'];
-        $taikhoan['username']=$data['id'];
-        $taikhoan['matkhau']=1;
-        $this->db->insert('taikhoan',$taikhoan);
-        $this->db->query("update countuser set NV=NV+1");
+        $data['MaNhanVien'] = $this->createStaffID($this->countNV(),$data['ChucVu']);
+        $this->db->insert($this->nhan_vien,$data);
+        $taikhoan['MaNguoiDung']=$data['id'];
+        $taikhoan['TenTaiKhoan']=$data['id'];
+        $taikhoan['MatKhau']=1;
+        $this->db->insert($this->tai_khoan,$taikhoan);
+        $this->db->query("update $this->tham_so set GiaTri=GiaTri+1 where MaThamSo = 'NV'");
     }
     public function editStaff($data)
     {
-        $this->db->update('nhanvien',$data,"id='".$data['id']."'");
+        $this->db->update($this->nhan_vien,$data,"id='".$data['id']."'");
     }
     public function deleteStaff($id)
     {
-        $this->db->delete('taikhoan',"iduser='$id'");
-        $this->db->delete('nhanvien',"id='$id'");
+        $this->db->delete($this->nhan_vien,"MaNhanVien='$id'");
+        $this->db->delete($this->tai_khoan,"MaNguoiDung='$id'");
     }
     public function searchStaff($id){
-        $sql = "select * from nhanvien where id='$id'";
+        $sql = "select * from $this->nhan_vien where MaNhanVien='$id'";
         $data = $this->db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
         return $data;
     }
@@ -48,9 +50,8 @@ class StaffManageModel extends Model
     //Đếm số lượng nhân viên
     function countNV()
     {
-        $sql = "select NV from $this->count_user where id=1";
+        $sql = "select GiaTri from $this->tham_so where MaThamSo = 'NV'";
         $data = $this->db->query($sql)->fetch(PDO::FETCH_ASSOC);
-        extract($data);
-        return $NV;
+        return $data['GiaTri'];
     }
 }

@@ -21,16 +21,16 @@
                     <?php
                     foreach ($phieubaoduong as $key => $value) {
                         echo '<tr class="">';
-                        echo "<td>" . $value['id'] . "</td>";
-                        echo "<td>" . $value['idnv'] . "</td>";
-                        echo "<td>" . $value['idkh'] . "</td>";
-                        echo "<td>" . $value['ten'] . "</td>";
-                        echo "<td>" . $value['bienso'] . "</td>";
-                        echo "<td>" . $value['sdt'] . "</td>";
-                        echo "<td>" . $value['suachua'] . "</td>";
-                        echo "<td>" . $value['baoduong'] . "</td>";
-                        echo "<td>" . $value['nangcap'] . "</td>";
-                        echo '<td><button class="btn btn-gray-800 mx-1 animate-up-2 edit" value="' . $value['id'] . '"><a style="color:white;" href="'._WEB_ROOT.'/lap-phieu-tiep-nhan-xe/'.$value['id'].'">Tiếp nhận</a></button></td>';
+                        echo "<td>" . $value['MaPhieu'] . "</td>";
+                        echo "<td>" . $value['MaNhanVienBaoDuong'] . "</td>";
+                        echo "<td>" . $value['MaKhachHang'] . "</td>";
+                        echo "<td>" . $value['Ten'] . "</td>";
+                        echo "<td>" . $value['BienSo'] . "</td>";
+                        echo "<td>" . $value['SDT'] . "</td>";
+                        echo "<td>" . $value['SuaChua'] . "</td>";
+                        echo "<td>" . $value['BaoDuong'] . "</td>";
+                        echo "<td>" . $value['NangCap'] . "</td>";
+                        echo '<td><button class="btn btn-gray-800 mx-1 animate-up-2 edit" value="' . $value['MaPhieu'] . '"><a style="color:white;" href="'._WEB_ROOT.'/lap-phieu-tiep-nhan-xe/'.$value['MaPhieu'].'">Tiếp nhận</a></button></td>';
                         echo "</tr>";
                         }
                     ?>

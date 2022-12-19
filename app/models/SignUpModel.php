@@ -2,9 +2,9 @@
 #Kế thừa từ class Model
 class SignUpModel extends Model
 {
-    protected $user_table = 'khachhang';
-    protected $account_table = 'taikhoan';
-    protected $count_user = 'countuser';
+    protected $user_table = 'khach_hang';
+    protected $account_table = 'tai_khoan';
+    protected $tham_so = 'tham_so';
 
     public function __construct()
     {
@@ -15,9 +15,9 @@ class SignUpModel extends Model
     { 
         if(!$this->isUserExist($username)){      
             $id = $this->createId($this->countKH());
-            $this->addUser($id);
             $data = new TaiKhoan($id,$username,$password);
-            $this->db->insert($this->account_table,$data);
+            $this->db->insert($this->account_table,$data);    
+            $this->addUser($id);
             $this->updateKH();
             return true;
         }
@@ -26,10 +26,9 @@ class SignUpModel extends Model
     //Đếm số lượng khách hàng
     function countKH()
     {
-        $sql = "select KH from $this->count_user where id=1";
+        $sql = "select GiaTri from $this->tham_so where MaThamSo='KH'";
         $data = $this->db->query($sql)->fetch(PDO::FETCH_ASSOC);
-        extract($data);
-        return $KH;
+        return $data['giatri'];
     }
     //Tạo ID Khách hàng
     function createId($id)
@@ -49,10 +48,10 @@ class SignUpModel extends Model
     //Kiểm tra tồn tại khách hàng
     function isUserExist($username)
     {
-        $data = $this->db->query("select * from $this->account_table where username = '$username'")->fetch(PDO::FETCH_ASSOC);
+        $data = $this->db->query("select * from $this->account_table where TenTaiKhoan = '$username'")->fetch(PDO::FETCH_ASSOC);
         return !empty($data);
     }
     public function updateKH(){
-        $this->db->query("update $this->count_user set KH=KH+1");  
+        $this->db->query("update $this->tham_so set GiaTri=GiaTri+1 where MaThamSo = 'KH'");  
     }
 }

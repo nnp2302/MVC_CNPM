@@ -1,11 +1,11 @@
 <?php
     class TaiKhoan{
-        public $iduser,$username,$matkhau;
+        public $MaNguoiDung,$TenTaiKhoan,$MatKhau;
         public function __construct($iduser,$username,$matkhau)
         {
-            $this->iduser=$iduser;
-            $this->username=$username;
-            $this->matkhau=$matkhau;
+            $this->MaNguoiDung=$iduser;
+            $this->TenTaiKhoan=$username;
+            $this->MatKhau=$matkhau;
         }
     }
 ?>

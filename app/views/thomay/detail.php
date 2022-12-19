@@ -8,21 +8,21 @@
                         <div class="col-lg-4 col-sm-6">
                             <div class="mb-4">
                                 <label for="ten">Tên khách hàng</label>
-                                <input type="text" class="form-control" id="text" value="<?php echo $phieubaoduong['ten']?>" placeholder="Nguyễn Văn A" name="name" readonly>
+                                <input type="text" class="form-control" id="text" value="<?php echo $phieubaoduong['Ten']?>" placeholder="Nguyễn Văn A" name="name" readonly>
                             </div>
                         </div>
                         <div class="col-lg-4 col-sm-6">
                             <div class="mb-4">
                                 <label for="text">Loại xe</label>
-                                <input type="text" class="form-control" id="text" value="<?php echo $phieubaoduong['loaixe']?>" placeholder="G63" name="car_type" readonly>
+                                <input type="text" class="form-control" id="text" value="<?php echo $phieubaoduong['LoaiXe']?>" placeholder="G63" name="car_type" readonly>
                             </div>
                             <div class="mb-4">
                                 <label for="text">Hãng xe</label>
-                                <input type="text" class="form-control" id="text" value="<?php echo $phieubaoduong['hangxe']?>" placeholder="Mercedes" name="brand" readonly>
+                                <input type="text" class="form-control" id="text" value="<?php echo $phieubaoduong['HangXe']?>" placeholder="Mercedes" name="brand" readonly>
                             </div>
                             <div class="mb-4">
                                 <label for="text">Biển số xe</label>
-                                <input type="text" class="form-control" id="text" value="<?php echo $phieubaoduong['bienso']?>" placeholder="00-A0-00000" name="car_id" readonly>
+                                <input type="text" class="form-control" id="bienso" value="<?php echo $phieubaoduong['BienSo']?>" placeholder="00-A0-00000" name="car_id" readonly>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-6">
@@ -31,19 +31,19 @@
                                 <span class="h6 fw-bold">Nhu cầu</span>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" onclick="return false;" <?php echo (!empty($phieubaoduong['suachua']))?'checked':'';?> id="defaultCheck10" name="fix">
+                                <input class="form-check-input" type="checkbox" value="" onclick="return false;" <?php echo (!empty($phieubaoduong['SuaChua']))?'checked':'';?> id="defaultCheck10" name="fix">
                                 <label class="form-check-label" for="defaultCheck10">
                                     Sửa chữa
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" onclick="return false;" <?php echo (!empty($phieubaoduong['baoduong']))?'checked':'';?> id="defaultCheck20" name="maintenance" disabled>
+                                <input class="form-check-input" type="checkbox" value="" onclick="return false;" <?php echo (!empty($phieubaoduong['BaoDuong']))?'checked':'';?> id="defaultCheck20" name="maintenance" disabled>
                                 <label class="form-check-label" for="defaultCheck20">
                                     Bảo dưỡng
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" onclick="return false;" <?php echo (!empty($phieubaoduong['nangcap']))?'checked':'';?> id="defaultCheck20" name="upgrade" disabled>
+                                <input class="form-check-input" type="checkbox" value="" onclick="return false;" <?php echo (!empty($phieubaoduong['NangCap']))?'checked':'';?> id="defaultCheck20" name="upgrade" disabled>
                                 <label class="form-check-label" for="defaultCheck20">
                                     Nâng cấp phụ tùng
                                 </label>
@@ -51,7 +51,7 @@
                         </div>
                         <div class="mb-4">
                             <label for="text">Ghi chú</label>
-                            <input type="text" class="form-control" value="<?php echo $phieubaoduong['ghichu']?>"  id="text" placeholder="Nội dung ghi chú..." name="car_id" readonly>
+                            <input type="text" class="form-control" value="<?php echo $phieubaoduong['GhiChu']?>"  id="text" placeholder="Nội dung ghi chú..." name="car_id" readonly>
                         </div>
 
                     </div>
@@ -119,21 +119,11 @@
 <script>
     var i = 1;
     var addButton = document.getElementById("addButton");
-    var jsons = [];
+    var danhgia = [];
 
     var submitBtn = document.getElementById("submitBtn");
     submitBtn.onclick = function(){
-        $.ajax({
-            url: "<?php echo _WEB_ROOT;?>/danh-gia-tinh-trang-xe",
-            method: "post",
-            data: {
-                danhgia: jsons,
-                thongtin:2 //JSON.stringify(jsons)
-            },
-            success: function(res) {
-                console.log(res);
-            }
-        });
+        postJson();
     }
     addButton.onclick = function() {
         let json = {};
@@ -141,10 +131,10 @@
         var percent = document.getElementById("percent");
         var textCheckName = checkName.options[checkName.selectedIndex].text;
         //Thêm json tình trạng xe
-        json.biensoxe = "12-B4 56789"
+        json.biensoxe = document.getElementById('bienso').value;
         json.noidung = textCheckName;
         json.tinhtrang = percent.value;
-        json.ngaydanhgia = Date.now();
+        json.thoigiandanhgia = Date.now();
         //
         if (percent.value != 0) {
             var innerHtml = '<!-- Item -->' +
@@ -177,17 +167,20 @@
             percent.value = null;
         }
         //Thêm vào danh sách json
-        jsons.push(json);
-        console.log(jsons);
+        danhgia.push(json);
+        console.log(danhgia);
     }
 
     // Hàm POST Json 
     function postJson() {
+        let thongtin = {};
+        thongtin.MaPhieuBaoDuong = <?php echo $data['phieubaoduong']['MaPhieu'] ?>;
         $.ajax({
-            url: "<?php echo _WEB_ROOT;?>/danh-gia-tinh-trang-xe",
+            url: "<?php echo _WEB_ROOT;?>/tao-phieu-tiep-nhan-xe",
             method: "post",
             data: {
-                jsons: JSON.stringify(jsons)
+                danhgia: danhgia,
+                thongtin:thongtin
             },
             success: function(res) {
                 console.log(res);

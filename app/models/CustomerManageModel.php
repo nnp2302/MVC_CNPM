@@ -1,46 +1,32 @@
 <?php
 class CustomerManageModel extends Model
 {
-    protected $count_user='countuser';
+    protected $khach_hang = 'khach_hang';
+    protected $tai_khoan = 'tai_khoan';
+    protected $tham_so='tham_so';
     public function __construct()
     {
         parent::__construct();
     }
-
     public function getCustomerList()
     {
-        $sql = "select * from khachhang";
+        $sql = "select * from $this->khach_hang";
         $data = $this->db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
         return $data;
     }
     public function editCustomer($data)
     {
-        $this->db->update('khachhang',$data,"id='".$data['id']."'");
+        // print_r($data);die();
+        $this->db->update($this->khach_hang,$data,"MaKhachHang='".$data['MaKhachHang']."'");
     }
     public function deleteCustomer($id)
     {
-        $this->db->delete('taikhoan',"iduser='$id'");
-        $this->db->delete('khachhang',"id='$id'");
+        $this->db->delete($this->khach_hang,"MaKhachHang='$id'");
+        $this->db->delete($this->tai_khoan,"MaNguoiDung='$id'");
     }
     public function searchCustomer($id){
-        $sql = "select * from khachhang where id='$id'";
+        $sql = "select * from $this->khach_hang where MaKhachHang='$id'";
         $data = $this->db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
         return $data;
-    }
-    public function createcustomerID($id,$chucvu)
-    {
-        $id++;
-        while (strlen($id) < 8) {
-            $id = '0' . $id;
-        }
-        return $chucvu. $id;
-    } 
-    //Đếm số lượng nhân viên
-    function countKH()
-    {
-        $sql = "select KH from $this->count_user where id=1";
-        $data = $this->db->query($sql)->fetch(PDO::FETCH_ASSOC);
-        extract($data);
-        return $KH;
     }
 }

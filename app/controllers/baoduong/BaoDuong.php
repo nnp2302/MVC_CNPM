@@ -5,10 +5,13 @@ class BaoDuong extends BaseController{
     {
         $this->model = $this->model('BaoDuongModel');
     }
-    public function index($search =[]){
+    public function index($search =[],$message=''){
         $title ='Bảo dưỡng';
         $this->data['page_title'] = $title;
         $this->data['page'] = 'lap-phieu-bao-duong';
+        if(!empty($message)){
+            $this->data['message'] = $message;
+        }
         $this->data['content'] = 'baoduong/index';
         $this->data['search'] = $search;
         $this->render('layouts/client_layout',$this->data);

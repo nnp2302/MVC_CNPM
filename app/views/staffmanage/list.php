@@ -24,12 +24,12 @@
                     <?php
                     foreach ($stafflist as $key => $value) {
                         echo '<tr class="">';
-                        echo "<td>" . $value['id'] . "</td>";
-                        echo "<td>" . $value['ho'] . "</td>";
-                        echo "<td>" . $value['ten'] . "</td>";
-                        echo "<td>" . $value['gioitinh'] . "</td>";
-                        echo "<td>" . $value['chucvu'] . "</td>";
-                        echo '<td><button class="btn btn-gray-800 mx-1 animate-up-2 edit" value="' . $value['id'] . '" data-bs-toggle="modal" data-bs-target="#edit">Sửa</button><button class="btn btn-danger animate-up-2 delete" value="' . $value['id'] . '"data-bs-toggle="modal" data-bs-target="#delete">Xóa</button></td>';
+                        echo "<td>" . $value['MaNhanVien'] . "</td>";
+                        echo "<td>" . $value['Ho'] . "</td>";
+                        echo "<td>" . $value['Ten'] . "</td>";
+                        echo "<td>" . $value['GioiTinh'] . "</td>";
+                        echo "<td>" . $value['ChucVu'] . "</td>";
+                        echo '<td><button class="btn btn-gray-800 mx-1 animate-up-2 edit" value="' . $value['MaNhanVien'] . '" data-bs-toggle="modal" data-bs-target="#edit">Sửa</button><button class="btn btn-danger animate-up-2 delete" value="' . $value['MaNhanVien'] . '"data-bs-toggle="modal" data-bs-target="#delete">Xóa</button></td>';
                         echo "</tr>";
                     }
                     ?>

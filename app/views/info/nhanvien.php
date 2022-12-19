@@ -8,13 +8,13 @@
           <div class="col-md-6 mb-3">
             <div>
               <label for="first_name">Họ</label>
-              <?php echo '<input class="form-control" id="first_name" name="ho" type="text" placeholder="Chưa cập nhật" value="' . $ho . '" required>'; ?>
+              <?php echo '<input class="form-control" id="first_name" name="ho" type="text" placeholder="Chưa cập nhật" value="' . $Ho . '" required>'; ?>
             </div>
           </div>
           <div class="col-md-6 mb-3">
             <div>
               <label for="last_name">Tên</label>
-              <?php echo '<input class="form-control" id="last-name" name="ten" type="text" placeholder="Chưa cập nhật" value="' . $ten . '" required>'; ?>
+              <?php echo '<input class="form-control" id="last-name" name="ten" type="text" placeholder="Chưa cập nhật" value="' . $Ten . '" required>'; ?>
             </div>
           </div>
         </div>
@@ -24,9 +24,9 @@
             <select class="form-select mb-0" id="gender" aria-label="Gender select example" name="gioitinh">
               <?php
               echo '<option value="-1">Chưa cập nhật</option>';
-              echo '<option value="0" ', $gioitinh == "0" ? "selected" : "", '>Nữ</option>';
-              echo '<option value="1" ', $gioitinh == "1" ? "selected" : "", '>Nam</option>';
-              echo '<option value="9" ', $gioitinh == "9" ? "selected" : "", '>Khác</option>'; ?>
+              echo '<option value="0" ', $GioiTinh == "0" ? "selected" : "", '>Nữ</option>';
+              echo '<option value="1" ', $GioiTinh == "1" ? "selected" : "", '>Nam</option>';
+              echo '<option value="9" ', $GioiTinh == "9" ? "selected" : "", '>Khác</option>'; ?>
             </select>
           </div>
           <div class="col-md-6 mb-3">
