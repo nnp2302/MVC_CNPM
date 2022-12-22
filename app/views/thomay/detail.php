@@ -57,7 +57,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-4 col-sm-6">
-                            <label for="checkName">Loại</label>
+                            <label for="checkName">Đánh giá xe</label>
                             <select class="form-select mb-0" id="checkName">
                                 <!--</option>-->
                                 <option value="0">Lốp xe</option>

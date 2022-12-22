@@ -29,7 +29,7 @@
               </div>
               <div class="mb-4">
                 <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" placeholder="Cập nhật email ở thông tin" readonly>
+                <input type="email" class="form-control" id="email" value="<?php echo $_SESSION['user']['Email'] ?>" name="email" placeholder="Cập nhật email ở thông tin" readonly>
                 <small id="emailHelp" class="form-text text-muted">Chúng tôi có thể liên lạc với quý khách thông qua email (tùy chọn)</small>
               </div>
             </div>

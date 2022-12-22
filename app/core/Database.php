@@ -50,7 +50,6 @@ class Database{
             $valueStr = rtrim($valueStr,',');
             
             $sql = "insert into $table($fieldStr) values $valueStr";
-            print_r($sql);
             $status = $this->query($sql);
             if($status){
                 return true;

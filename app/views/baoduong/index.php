@@ -62,20 +62,19 @@
             </div>
             <div class="row">
                         <div class="col-lg-4 col-sm-6">
-                            <label for="checkName">Loại</label>
+                            <label for="checkName">Dịch vụ sử dụng</label>
                             <select class="form-select mb-0" id="LoaiDichVu">
                                 <!--</option>-->
-                                <option value="0">Lốp xe</option>
-                                <option value="1">Kính</option>
-                                <option value="2">Phanh xe</option>
-                                <option value="3">Giảm chấn trước</option>
-                                <option value="4">Đèn pha</option>
-                                <option value="5">Mâm xe</option>
-                                <option value="6">Dây cua-roa</option>
-                                <option value="7">Hệ thống phun xăng</option>
-                                <option value="8">Cần gạt nước</option>
-                                <option value="9">Gioăng kính cửa sổ</option>
-                                <option value="10">Giảm chấn sau</option>
+                                <option value="DV00000001">Dịch vụ 1</option>
+                                <option value="DV00000002">Dịch vụ 2</option>
+                                <option value="DV00000003">Dịch vụ 3</option>
+                                <option value="DV00000004">Dịch vụ 4</option>
+                                <option value="DV00000005">Dịch vụ 5</option>
+                                <option value="DV00000006">Dịch vụ 6</option>
+                                <option value="DV00000007">Dịch vụ 7</option>
+                                <option value="DV00000008">Dịch vụ 8</option>
+                                <option value="DV00000009">Dịch vụ 9</option>
+                                <option value="DV00000010">Dịch vụ 10</option>
                             </select>
                         </div>
                         <div class="col-lg-4 col-sm-6 d-flex align-items-center">

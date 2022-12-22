@@ -24,11 +24,19 @@
         public function taoPhieuTiepNhanXe($data=[]){
             if(!empty($data)){
                 extract($data);
+
+
                 $thongtin['mathomaynhanxe'] = $_SESSION['user']['id'];
                 $thongtin['tinhtrangphutung'] = -1;
-                $this->db->insert($this->phieu_tiep_nhan_xe,$thongtin);
+                $lastID =$this->db->insertReturnLast($this->phieu_tiep_nhan_xe,$thongtin);
+                
+                $result = $this->db->query("CALL LayThongTinXe($lastID)")->fetch(PDO::FETCH_ASSOC);
+                extract($result);
+                print_r($result);
+                $this->db->query("CALL ThemXe('$MaKhachHang','$BienSo')");
                 foreach ($danhgia as $key => $value) {
                     $value['thodanhgia'] = $thongtin['mathomaynhanxe'];
+                    $value['maphieutiepnhan'] = $lastID;
                     $value['thoigiandanhgia'] = date('Y-m-d H:i:s',$value['thoigiandanhgia']/1000);
                     $this->db->insert($this->danh_gia_tinh_trang_xe,$value);
                 }

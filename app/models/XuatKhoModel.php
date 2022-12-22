@@ -19,5 +19,6 @@ class XuatKhoModel extends Model{
     function xacnhan($id){
         $sql = "update $this->phieu_tiep_nhan_xe set tinhtrangphutung =1 where MaPhieu = '$id'";
         $this->db->query($sql);
+        $this->db->query("CALL TaoHoaDon($id)");
     }
 }

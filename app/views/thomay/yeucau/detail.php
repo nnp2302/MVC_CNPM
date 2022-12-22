@@ -14,20 +14,19 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-4 col-sm-6">
-                        <label for="TenPhuTung">Loại</label>
+                        <label for="TenPhuTung">Yêu cầu phụ tùng</label>
                         <select class="form-select mb-0" id="TenPhuTung">
                             <!--</option>-->
-                            <option value="0">Phụ tùng 1</option>
-                            <option value="1">Phụ tùng 2</option>
-                            <option value="2">Phụ tùng 3</option>
-                            <option value="3">Phụ tùng 4</option>
-                            <option value="4">Phụ tùng 5</option>
-                            <option value="5">Phụ tùng 6</option>
-                            <option value="6">Phụ tùng 7</option>
-                            <option value="7">Phụ tùng 8</option>
-                            <option value="8">Phụ tùng 9</option>
-                            <option value="9">Phụ tùng 10</option>
-                            <option value="10">Phụ tùng 11</option>
+                            <option value="PT00000001">Phụ tùng 1</option>
+                            <option value="PT00000002">Phụ tùng 2</option>
+                            <option value="PT00000003">Phụ tùng 3</option>
+                            <option value="PT00000004">Phụ tùng 4</option>
+                            <option value="PT00000005">Phụ tùng 5</option>
+                            <option value="PT00000006">Phụ tùng 6</option>
+                            <option value="PT00000007">Phụ tùng 7</option>
+                            <option value="PT00000008">Phụ tùng 8</option>
+                            <option value="PT00000009">Phụ tùng 9</option>
+                            <option value="PT00000010">Phụ tùng 10</option>
                         </select>
                     </div>
                     <div class="col-lg-4 col-sm-6">

@@ -23,6 +23,7 @@
                             $dataField[$key] = filter_input(INPUT_GET,$key,FILTER_SANITIZE_SPECIAL_CHARS);
                         }
                     }
+                    $_GET = null;
                 }
             }
             
@@ -36,8 +37,10 @@
                             $dataField[$key] = filter_input(INPUT_POST,$key,FILTER_SANITIZE_SPECIAL_CHARS);
                         }
                     }
+                    $_POST = null;
                 }
             }
+
             return $dataField;
         }
     }
