@@ -18,7 +18,6 @@ class Database{
             $valueStr = rtrim($valueStr,',');
             
             $sql = "insert into $table($fieldStr) values ($valueStr)";
-            echo $sql;
             $status = $this->query($sql);
             if($status){
                 return true;

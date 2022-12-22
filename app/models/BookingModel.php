@@ -2,6 +2,7 @@
 #Kế thừa từ class Model
 class BookingModel extends Model{
     protected $lich_dat = 'lich_dat';
+    protected $tham_so='tham_so';
 
     public function __construct()
     {
@@ -14,14 +15,24 @@ class BookingModel extends Model{
         $data['tinhtranglichdat'] = false;
         $data['thoigiantaolich']= date("Y-m-d H:i:s");
         extract($data);
-        $result = $this->kiemtraxe($BienSo,$MaKhachHang);
-        if(is_bool($result)){
-            $this->db->insert($this->lich_dat,$data);
-            return 'Đặt lịch thành công';
+        $sql = "select GiaTri from $this->tham_so where mathamso = 'GHDL'";
+        $limit = $this->db->query($sql)->fetch(PDO::FETCH_ASSOC);
+        $sql = "select count(*) as solichdat from $this->lich_dat where curdate()=ngaydat";
+        $solichdat = $this->db->query($sql)->fetch(PDO::FETCH_ASSOC);
+        
+        if($limit['GiaTri'] > $solichdat['solichdat']){
+            $result = $this->kiemtraxe($BienSo,$MaKhachHang);
+            if(is_bool($result)){
+                $this->db->insert($this->lich_dat,$data);
+                return 'Đặt lịch thành công';
+            }else{
+                $this->db->update($this->lich_dat,$data,"MaLichDat=$result");
+                return 'Đã cập nhật lịch đặt cho biển số '.$data['BienSo'];
+            }
         }else{
-            $this->db->update($this->lich_dat,$data,"MaLichDat=$result");
-            return 'Đã cập nhật lịch đặt cho biển số '.$data['BienSo'];
+            return 'Giới hạn đặt ngày hôm nay đã vượt '.$limit['GiaTri'];
         }
+        
     }
 
     private function kiemtraxe($bienso,$idkh){
